@@ -1,0 +1,17 @@
+# Ignore artifacts:
+build
+.next
+out
+coverage
+dist
+node_modules
+public/build
+*.log
+
+# Ignore config files if needed:
+*.config.js
+*.config.ts
+
+# Optional: ignore test snapshots or generated types
+*.snap
+types/generated.ts
