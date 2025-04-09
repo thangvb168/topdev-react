@@ -12,7 +12,7 @@ const Hero = () => {
             <div className="w-full md:w-5/12">Input Search</div>
             <div className="flex w-full items-center justify-center gap-x-[10px] md:w-1/4">
               <div>Input Select</div>
-              <Button />
+              <Button fullWidth={true}>Tìm kiếm</Button>
             </div>
           </div>
         </div>
