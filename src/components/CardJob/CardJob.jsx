@@ -50,10 +50,10 @@ const CardJob = props => {
   return (
     <div
       onClick={handleClick}
-      className={`rounded-lg p-4 shadow-lg transition-all duration-200 ease-in-out hover:-translate-y-1 hover:scale-105 ${cardClass} ${className}`}
+      className={`rounded-lg bg-white p-4 shadow-lg transition-all duration-200 ease-in-out hover:-translate-y-1 hover:scale-105 ${cardClass} ${className}`}
     >
       <div className="flex items-center gap-4">
-        <div className="size-12 overflow-hidden rounded-full">
+        <div className="size-12 overflow-hidden">
           <img
             src={imgSrc}
             alt="Thumbnail"
@@ -61,7 +61,7 @@ const CardJob = props => {
             onError={handleImgError}
           />
         </div>
-        <div className="grow">
+        <div className="grow text-start">
           <h1 className="display-2 line-clamp-1">{title}</h1>
           <p className="text-primary extra-small">
             Up to {Math.round(salary)}$
@@ -81,10 +81,23 @@ const CardJob = props => {
             <FontAwesomeIcon icon={faClock} /> {type}
           </span>
         </div>
-        <p className="line-clamp-2">{description}</p>
+        <p className="line-clamp-2 text-start">{description}</p>
       </div>
     </div>
   );
+};
+
+CardJob.defaultProps = {
+  thumbnail: '/img/fallback/thumbnail-fallback.jpg',
+  title: 'Title',
+  salary: 0,
+  locationType: 'Onsite',
+  type: 'Full Time',
+  description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  isBookmarked: false,
+  fullWidth: false,
+  onBookmarkToggle: null,
+  onClick: () => {},
 };
 
 export default CardJob;

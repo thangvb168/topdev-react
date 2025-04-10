@@ -5,11 +5,9 @@ import Container from '../Container';
 
 const Header = () => {
   return (
-    <header id="header-container" className="sticky top-0">
-      <Container>
-        <TopBar />
-        <MainHeader />
-      </Container>
+    <header id="header-container" className="sticky top-0 z-[100]">
+      <TopBar />
+      <MainHeader />
     </header>
   );
 };
