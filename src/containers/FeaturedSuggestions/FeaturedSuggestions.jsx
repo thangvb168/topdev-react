@@ -16,11 +16,16 @@ const FeaturedSuggestions = () => {
             <Button>Đà Nẵng</Button>
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          <CardJob title={'ABC'} salary={1000} isBookmarked={true} />
-          <CardJob />
-          <CardJob />
-          <CardJob />
+        <div className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <CardJob
+            title={'ABC'}
+            salary={1000}
+            isBookmarked={true}
+            fullWidth={true}
+          />
+          <CardJob fullWidth={true} />
+          <CardJob fullWidth={true} />
+          <CardJob fullWidth={true} />
         </div>
       </Container>
     </section>
