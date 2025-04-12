@@ -40,7 +40,7 @@ const Hero = () => {
                   <Select.Option value="Hồ Chí Minh">Hồ Chí Minh</Select.Option>
                   <Select.Option value="Đà Nẵng">Đà Nẵng</Select.Option>
                 </Select>
-                <Button fullWidth={true} size={'md'}>
+                <Button block size={'md'}>
                   <span className="text-nowrap">Tìm kiếm</span>
                 </Button>
               </div>
@@ -48,22 +48,22 @@ const Hero = () => {
           </div>
 
           <div className="flex w-full flex-wrap items-center justify-center gap-[10px]">
-            <Button isOutline={true}>
+            <Button variant="outlined" color="primary">
               <span className="small-headline text-nowrap text-black">
                 New Job
               </span>
             </Button>
-            <Button isOutline={true}>
+            <Button variant="outlined" color="primary">
               <span className="small-headline text-nowrap text-black">
                 Part Time
               </span>
             </Button>
-            <Button isOutline={true}>
+            <Button variant="outlined" color="primary">
               <span className="small-headline text-nowrap text-black">
                 Full Time
               </span>
             </Button>
-            <Button isOutline={true}>
+            <Button variant="outlined" color="primary">
               <span className="small-headline text-nowrap text-black">
                 Work from home
               </span>

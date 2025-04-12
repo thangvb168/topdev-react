@@ -19,12 +19,7 @@ const Select = ({ value, placeholder, onChange, children }) => {
 
   return (
     <div className="relative inline-block w-full">
-      <Button
-        size="md"
-        color="neutral"
-        fullWidth={true}
-        onClick={() => setOpen(!open)}
-      >
+      <Button size="md" color="neutral" block onClick={() => setOpen(!open)}>
         <span className="line-clamp-1">{value || placeholder}</span>
       </Button>
 
