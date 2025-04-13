@@ -6,11 +6,12 @@ import Spinner from '../Spinner';
  *
  * @param {{
  *   type: 'button' | 'submit';
- *   color: 'primary' | 'success' | 'default';
+ *   color: 'primary' | 'success' | 'neutral' | 'default';
  *   variant: 'solid' | 'outlined' | 'dashed' | 'filled' | 'text' | 'link';
  *   size: 'sm' | 'md' | 'lg' | 'xl';
  *   shape: 'default' | 'square' | 'circle' | 'round';
  *   block: boolean;
+ *   align: 'left' | 'center' | 'right';
  *   href: string | null;
  *   isLoading: boolean;
  *   disabled: boolean;
@@ -31,6 +32,7 @@ const Button2 = props => {
     size = 'md',
     shape = 'default',
     block = false,
+    align = 'center',
     href = null,
     icon = null,
     isLoading = false,
@@ -50,6 +52,7 @@ const Button2 = props => {
     primary: { '--btn-color': 'var(--color-primary)' },
     success: { '--btn-color': 'var(--color-success-1)' },
     white: { '--btn-color': 'var(--color-white)' },
+    neutral: { '--btn-color': 'var(--color-neutral-1)' },
   };
 
   let variantClasses = {
@@ -97,9 +100,13 @@ const Button2 = props => {
     round: 'rounded-lg',
   };
 
-  const displayClass = block
-    ? 'flex items-center justify-center w-full'
-    : 'inline-block';
+  const displayClass = block ? 'flex items-center  w-full' : 'inline-block';
+
+  const alignClass = {
+    left: 'justify-start',
+    center: 'justify-center',
+    right: 'justify-end',
+  };
 
   const disabledClass = disabled
     ? 'cursor-not-allowed opacity-50'
@@ -108,6 +115,7 @@ const Button2 = props => {
   const btnClass = clsx(
     'transition duration-150 ease-in-out',
     displayClass,
+    alignClass[align] || alignClass.center,
     disabledClass,
     sizeClasses[size] || sizeClasses.md,
     shapeClasses[shape] || shapeClasses.default,

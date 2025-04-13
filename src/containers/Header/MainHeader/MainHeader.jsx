@@ -27,7 +27,7 @@ const MainHeader = () => {
           </div>
           <div className="flex grow flex-row-reverse items-center justify-between md:grow-0 md:flex-row md:gap-8">
             <div className="relative">
-              <FontAwesomeIcon size="md" icon={faBell} />
+              <FontAwesomeIcon size="2xl" icon={faBell} />
               <div className="absolute -top-0.5 left-1/2 flex items-center justify-center rounded-2xl bg-[#FF1D1D] px-1 py-[2px] text-white">
                 <span className="extra-small">{notiCount}+</span>
               </div>
