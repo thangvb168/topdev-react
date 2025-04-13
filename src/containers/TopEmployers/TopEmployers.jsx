@@ -14,7 +14,7 @@ const TopEmployers = () => {
   return (
     <section id="top-employers-container" className="mb-16">
       <Container>
-        <h1 className="mb-8">Nhà tuyển dụng hàng đầu</h1>
+        <h1 className="heading-1 mb-8">Nhà tuyển dụng hàng đầu</h1>
       </Container>
       <div>
         <Slider settings={settings}>

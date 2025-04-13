@@ -3,13 +3,14 @@ import Container from '../Container';
 import Button from '@/components/Button';
 import Slider from '@/components/Slider';
 import CompanyLogo from '@/components/CompanyLogo';
+import CardJob from '@/components/CardJob';
 
 const FeaturedCompanies = () => {
   return (
     <section id="featured-companies-container" className="mb-16">
       <Container>
-        <div className="flex gap-x-16 gap-y-8">
-          <div className="w-full md:w-1/5">
+        <div className="grid grid-cols-1 gap-x-16 gap-y-8 md:grid-cols-[5fr_12fr_3fr]">
+          <div className="">
             <h2 className="heading-2 mb-4">Danh mục</h2>
             <div className="flex flex-col gap-2">
               <Button
@@ -71,10 +72,10 @@ const FeaturedCompanies = () => {
               </Button>
             </div>
           </div>
-          <div className="flex w-full flex-col gap-4 md:w-3/5">
+          <div className="">
             <h2 className="heading-2">Công ty nổi bật</h2>
             <div className="">
-              <Slider
+              {/* <Slider
                 settings={{
                   arrows: false,
                   variableWidth: true,
@@ -98,13 +99,13 @@ const FeaturedCompanies = () => {
                   imgUrl="https://i.pinimg.com/736x/1e/97/b2/1e97b2e0509fe509d7afce5c4e287b0d.jpg"
                 />
                 <CompanyLogo border />
-              </Slider>
+              </Slider> */}
             </div>
-            <div className="flex gap-4 p-2">
+            <div className="flex flex-col gap-4 p-2 md:flex-row">
               <img
                 src="https://i.pinimg.com/736x/db/a2/4f/dba24f703c99ab334da01191cb0636e3.jpg"
                 alt="Thumbnail"
-                className="h-[230px] max-w-[410px] object-cover"
+                className="w-3/4 object-cover md:h-[230px] md:max-w-[410px]"
               />
               <div className="flex flex-col justify-between">
                 <div className="flex flex-col gap-2">
@@ -118,7 +119,22 @@ const FeaturedCompanies = () => {
               </div>
             </div>
           </div>
-          <div className="w-full md:w-1/5">Đề xuất cho bạn</div>
+          <div className="">
+            <h2 className="heading-2">Đề xuất cho bạn</h2>
+            {/* <Slider
+              settings={{
+                arrows: false,
+                dots: true,
+                slidesToShow: 1,
+                variableWidth: true,
+              }}
+            >
+              <CardJob />
+              <CardJob />
+              <CardJob />
+              <CardJob />
+            </Slider> */}
+          </div>
         </div>
       </Container>
     </section>

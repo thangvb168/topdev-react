@@ -6,6 +6,7 @@ const Slider = ({ children, settings = {}, className = 'w-full' }) => {
   if (!children || React.Children.count(children) === 0) return null;
 
   const defaultSettings = {
+    className: 'slider variable-width',
     slidesToShow: 3,
     centerMode: true,
     infinite: false,
