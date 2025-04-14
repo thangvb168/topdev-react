@@ -91,7 +91,7 @@ const Hero = () => {
           </div>
 
           <div className="mb-8 w-full">
-            <div className="bg-light mx-auto flex w-full flex-wrap gap-y-[10px] rounded-lg p-2 md:w-3/4">
+            <div className="bg-light/70 mx-auto flex w-full flex-wrap gap-y-[10px] rounded-lg p-2 md:w-3/4">
               <div className="w-full md:w-3/5 md:pr-[10px]">
                 <Input
                   size="extra"

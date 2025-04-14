@@ -11,11 +11,8 @@ const request = {
   get: async url => {
     try {
       const response = await axiosInstance.get(url);
-      console.log('Url:', url);
-      console.log('Response:', response.data);
       return response.data;
     } catch (error) {
-      console.error('Error fetching data:', error);
       throw error;
     }
   },

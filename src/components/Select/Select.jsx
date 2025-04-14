@@ -11,7 +11,7 @@ const Select = ({ value, placeholder, onChange, children }) => {
     setOpen(false);
   };
 
-  const clonedChildren = React.Children.map(children, child => {
+  const childrenElem = React.Children.map(children, child => {
     if (!React.isValidElement(child)) return child;
 
     return React.cloneElement(child, { onSelect: handleSelect });
@@ -25,7 +25,7 @@ const Select = ({ value, placeholder, onChange, children }) => {
 
       {open && (
         <div className="absolute z-10 mt-1 w-full rounded border bg-white p-2 shadow">
-          {clonedChildren}
+          {childrenElem}
         </div>
       )}
     </div>
