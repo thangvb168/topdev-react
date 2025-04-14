@@ -1,13 +1,82 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '../Container';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Select from '@/components/Select';
+import request from '@/utils/request';
+import CardJob from '@/components/CardJob';
+import useDebounce from '@/hooks/useDebounce';
 
 const Hero = () => {
   const [location, setLocation] = useState('');
+  const [type, setType] = useState('');
+  const [searchValue, setSearchValue] = useState('');
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const locations = [
+    {
+      value: 'Tất cả',
+      label: 'Tất cả',
+    },
+    {
+      value: 'Hà Nội',
+      label: 'Hà Nội',
+    },
+    {
+      value: 'Hồ Chí Minh',
+      label: 'Hồ Chí Minh',
+    },
+    {
+      value: 'Đà Nẵng',
+      label: 'Đà Nẵng',
+    },
+  ];
+
+  const types = ['New Job', 'Full Time', 'Part Time', 'Work from home'];
+
+  const fetchJobs = async () => {
+    setLoading(true);
+    try {
+      let data = await request.get('/jobs');
+      if (location !== '' && location !== 'Tất cả') {
+        data = data.filter(job => job.location.name === location);
+      }
+
+      if (type !== '') {
+        data = data.filter(job => job.type === type);
+      }
+
+      if (searchValue !== '') {
+        data = data.filter(job =>
+          job.title.toLowerCase().includes(searchValue.toLowerCase())
+        );
+      }
+
+      console.log('Length:', data.length);
+      setJobs(data);
+    } catch (error) {
+      console.error('Error fetching jobs:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const debouncedSearchValue = useDebounce(searchValue, 500);
+
+  const handleChangeOption = value => {
+    setLocation(value);
+  };
+
+  const handleChangeValue = e => {
+    setSearchValue(e.target.value.trim());
+  };
+
+  useEffect(() => {
+    fetchJobs();
+  }, [debouncedSearchValue, location, type]);
 
   return (
     <section id="hero-container" className="mt-[96px] mb-16">
@@ -28,19 +97,28 @@ const Hero = () => {
                   size="extra"
                   placeholder="Công việc bạn đang tìm ?"
                   suffix={<FontAwesomeIcon size="xl" icon={faSearch} />}
+                  onChange={handleChangeValue}
+                  value={searchValue}
                 />
               </div>
               <div className="flex w-full items-center justify-center gap-x-[10px] md:w-2/5">
                 <Select
                   value={location}
-                  onChange={setLocation}
+                  onChange={handleChangeOption}
                   placeholder="Vị trí"
                 >
-                  <Select.Option value="Hà Nội">Hà Nội</Select.Option>
-                  <Select.Option value="Hồ Chí Minh">Hồ Chí Minh</Select.Option>
-                  <Select.Option value="Đà Nẵng">Đà Nẵng</Select.Option>
+                  {locations.map(loc => (
+                    <Select.Option key={loc.value} value={loc.value}>
+                      {loc.label}
+                    </Select.Option>
+                  ))}
                 </Select>
-                <Button block size={'md'}>
+                <Button
+                  onClick={fetchJobs}
+                  block
+                  isLoading={loading}
+                  size={'md'}
+                >
                   <span className="text-nowrap">Tìm kiếm</span>
                 </Button>
               </div>
@@ -48,28 +126,54 @@ const Hero = () => {
           </div>
 
           <div className="flex w-full flex-wrap items-center justify-center gap-[10px]">
-            <Button variant="outlined" color="primary">
-              <span className="small-headline text-nowrap text-black">
-                New Job
-              </span>
-            </Button>
-            <Button variant="outlined" color="primary">
-              <span className="small-headline text-nowrap text-black">
-                Part Time
-              </span>
-            </Button>
-            <Button variant="outlined" color="primary">
-              <span className="small-headline text-nowrap text-black">
-                Full Time
-              </span>
-            </Button>
-            <Button variant="outlined" color="primary">
-              <span className="small-headline text-nowrap text-black">
-                Work from home
-              </span>
-            </Button>
+            {types.map(typeElem => {
+              const isActive = type === typeElem;
+
+              return (
+                <Button
+                  variant={isActive ? 'filled' : 'outlined'}
+                  color="primary"
+                  onClick={() => {
+                    setType(isActive ? '' : typeElem);
+                  }}
+                >
+                  <span className="small-headline text-nowrap text-black">
+                    {typeElem}
+                  </span>
+                </Button>
+              );
+            })}
           </div>
         </div>
+
+        {searchValue && (
+          <>
+            <h1 className="heading-1 mt-4">Kết quả tìm kiếm ({jobs.length})</h1>
+            {jobs.length !== 0 ? (
+              <div className="mt-2 grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                {loading ? (
+                  <div>Loading</div>
+                ) : (
+                  jobs.map(job => (
+                    <CardJob
+                      key={job.id}
+                      title={job.title}
+                      description={job.description}
+                      thumbnail={job.thumbnail}
+                      type={job.type}
+                      locationType={job.locationType}
+                      salary={job.salary}
+                      isBookmarked={job.isBookmarked}
+                      fullWidth={true}
+                    />
+                  ))
+                )}
+              </div>
+            ) : (
+              <h1>Không tìm thấy kết quả phù hợp</h1>
+            )}
+          </>
+        )}
       </Container>
     </section>
   );

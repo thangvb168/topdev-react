@@ -17,6 +17,7 @@ import React from 'react';
 const Input = props => {
   const {
     type = 'text',
+    value = '',
     placeholder,
     size = 'default',
     disabled = false,
@@ -63,6 +64,7 @@ const Input = props => {
         onBlur={onBlur}
         onFocus={onFocus}
         className={inputClass}
+        value={value}
       />
     </div>
   );
