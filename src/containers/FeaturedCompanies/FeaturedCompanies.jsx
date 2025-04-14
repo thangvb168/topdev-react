@@ -9,7 +9,7 @@ const FeaturedCompanies = () => {
   return (
     <section id="featured-companies-container" className="mb-16">
       <Container>
-        <div className="grid grid-cols-1 gap-x-16 gap-y-8 md:grid-cols-[5fr_12fr_3fr]">
+        <div className="grid grid-cols-1 gap-x-16 gap-y-8 md:grid-cols-[3fr_12fr_5fr]">
           <div className="">
             <h2 className="heading-2 mb-4">Danh mục</h2>
             <div className="flex flex-col gap-2">
@@ -72,35 +72,33 @@ const FeaturedCompanies = () => {
               </Button>
             </div>
           </div>
-          <div className="">
-            <h2 className="heading-2">Công ty nổi bật</h2>
-            <div className="">
-              {/* <Slider
-                settings={{
-                  arrows: false,
-                  variableWidth: true,
-                  infinite: true,
-                }}
-              >
-                <CompanyLogo
-                  border
-                  imgUrl="https://i.pinimg.com/736x/ab/56/f9/ab56f9d4bfaf6e2177592d3686477276.jpg"
-                />
-                <CompanyLogo
-                  border
-                  imgUrl="https://i.pinimg.com/736x/0c/50/8a/0c508acc1fe15b4b579ff26a9c19c050.jpg"
-                />
-                <CompanyLogo
-                  border
-                  imgUrl="https://i.pinimg.com/736x/f3/24/0a/f3240ad0d237afa68ae8a88e1782040f.jpg"
-                />
-                <CompanyLogo
-                  border
-                  imgUrl="https://i.pinimg.com/736x/1e/97/b2/1e97b2e0509fe509d7afce5c4e287b0d.jpg"
-                />
-                <CompanyLogo border />
-              </Slider> */}
-            </div>
+          <div className="min-h-0 min-w-0">
+            <h2 className="heading-2 mb-4">Công ty nổi bật</h2>
+            <Slider
+              settings={{
+                arrows: false,
+                variableWidth: true,
+                infinite: true,
+              }}
+            >
+              <CompanyLogo
+                border
+                imgUrl="https://i.pinimg.com/736x/ab/56/f9/ab56f9d4bfaf6e2177592d3686477276.jpg"
+              />
+              <CompanyLogo
+                border
+                imgUrl="https://i.pinimg.com/736x/0c/50/8a/0c508acc1fe15b4b579ff26a9c19c050.jpg"
+              />
+              <CompanyLogo
+                border
+                imgUrl="https://i.pinimg.com/736x/f3/24/0a/f3240ad0d237afa68ae8a88e1782040f.jpg"
+              />
+              <CompanyLogo
+                border
+                imgUrl="https://i.pinimg.com/736x/1e/97/b2/1e97b2e0509fe509d7afce5c4e287b0d.jpg"
+              />
+              <CompanyLogo border />
+            </Slider>
             <div className="flex flex-col gap-4 p-2 md:flex-row">
               <img
                 src="https://i.pinimg.com/736x/db/a2/4f/dba24f703c99ab334da01191cb0636e3.jpg"
@@ -119,21 +117,19 @@ const FeaturedCompanies = () => {
               </div>
             </div>
           </div>
-          <div className="">
-            <h2 className="heading-2">Đề xuất cho bạn</h2>
-            {/* <Slider
+          <div className="min-w-0">
+            <h2 className="heading-2 mb-4">Đề xuất cho bạn</h2>
+            <Slider
               settings={{
                 arrows: false,
                 dots: true,
                 slidesToShow: 1,
-                variableWidth: true,
+                variableWidth: false,
               }}
             >
-              <CardJob />
-              <CardJob />
-              <CardJob />
-              <CardJob />
-            </Slider> */}
+              <CardJob fullWidth={true} />
+              <CardJob fullWidth={true} />
+            </Slider>
           </div>
         </div>
       </Container>

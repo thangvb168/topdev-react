@@ -181,4 +181,11 @@ body {
 .slick-arrow.slick-next {
   right: 3rem;
 }
+
+.slick-slide > div {
+  margin: 0 10px;
+}
+.slick-list {
+  margin: 0 -10px;
+}
 /* End Custom Slider */

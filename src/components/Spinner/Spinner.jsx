@@ -16,7 +16,7 @@ const Spinner = ({ size = 'sm', color = 'blue-600' }) => {
     <div className={`flex h-full items-center justify-center ${sizeClass}`}>
       <svg
         aria-hidden="true"
-        class={`fill-${color} h-8 w-8 animate-spin text-gray-200 dark:text-gray-600`}
+        class={`animate-spin text-${color} text-gray-200 dark:text-gray-600`}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

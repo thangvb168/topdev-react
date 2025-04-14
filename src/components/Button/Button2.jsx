@@ -100,7 +100,9 @@ const Button2 = props => {
     round: 'rounded-lg',
   };
 
-  const displayClass = block ? 'flex items-center  w-full' : 'inline-block';
+  const displayClass = block
+    ? 'flex items-center w-full'
+    : 'inline-flex items-center';
 
   const alignClass = {
     left: 'justify-start',
