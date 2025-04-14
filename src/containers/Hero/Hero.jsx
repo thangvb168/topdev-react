@@ -8,6 +8,7 @@ import Select from '@/components/Select';
 import request from '@/utils/request';
 import CardJob from '@/components/CardJob';
 import useDebounce from '@/hooks/useDebounce';
+import { CardJobSkeleton } from '@/components/Skeleton';
 
 const Hero = () => {
   const [location, setLocation] = useState('');
@@ -151,23 +152,23 @@ const Hero = () => {
             <h1 className="heading-1 mt-4">Kết quả tìm kiếm ({jobs.length})</h1>
             {jobs.length !== 0 ? (
               <div className="mt-2 grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {loading ? (
-                  <div>Loading</div>
-                ) : (
-                  jobs.map(job => (
-                    <CardJob
-                      key={job.id}
-                      title={job.title}
-                      description={job.description}
-                      thumbnail={job.thumbnail}
-                      type={job.type}
-                      locationType={job.locationType}
-                      salary={job.salary}
-                      isBookmarked={job.isBookmarked}
-                      fullWidth={true}
-                    />
-                  ))
-                )}
+                {loading
+                  ? [1, 2, 3, 4].map(index => (
+                      <CardJobSkeleton key={index} fullWidth={true} />
+                    ))
+                  : jobs.map(job => (
+                      <CardJob
+                        key={job.id}
+                        title={job.title}
+                        description={job.description}
+                        thumbnail={job.thumbnail}
+                        type={job.type}
+                        locationType={job.locationType}
+                        salary={job.salary}
+                        isBookmarked={job.isBookmarked}
+                        fullWidth={true}
+                      />
+                    ))}
               </div>
             ) : (
               <h1>Không tìm thấy kết quả phù hợp</h1>

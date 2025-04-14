@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CardJob from '@/components/CardJob';
 import Slider from '@/components/Slider/Slider';
 import request from '@/utils/request';
+import { CardJobSkeleton } from '@/components/Skeleton';
 
 const HotJobsToday = () => {
   let settings = {
@@ -35,26 +36,22 @@ const HotJobsToday = () => {
         <h1 className="heading-1 mb-4">Công việc Hot Hôm Nay</h1>
         <div className="py-4">
           <Slider settings={settings}>
-            {loading ? (
-              <>
-                <div>Loading</div>
-                <div>Loading</div>
-                <div>Loading</div>
-              </>
-            ) : (
-              jobs.map(job => (
-                <CardJob
-                  key={job.id}
-                  title={job.title}
-                  description={job.description}
-                  thumbnail={job.thumbnail}
-                  type={job.type}
-                  locationType={job.locationType}
-                  salary={job.salary}
-                  isBookmarked={job.isBookmarked}
-                />
-              ))
-            )}
+            {loading
+              ? [1, 2, 3, 4, 5, 6].map(index => (
+                  <CardJobSkeleton key={index} fullWidth={false} />
+                ))
+              : jobs.map(job => (
+                  <CardJob
+                    key={job.id}
+                    title={job.title}
+                    description={job.description}
+                    thumbnail={job.thumbnail}
+                    type={job.type}
+                    locationType={job.locationType}
+                    salary={job.salary}
+                    isBookmarked={job.isBookmarked}
+                  />
+                ))}
           </Slider>
         </div>
       </div>

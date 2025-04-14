@@ -3,6 +3,7 @@ import Container from '../Container';
 import CardBlog from '@/components/CardBlog';
 import Slider from '@/components/Slider';
 import request from '@/utils/request';
+import { CardBlogSkeleton } from '@/components/Skeleton';
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -33,15 +34,15 @@ const Blogs = () => {
       <Container>
         <h1 className="heading-1 mb-8">Blog</h1>
 
-        <Slider style="special" settings={settings}>
-          {loading ? (
-            <div className="flex gap-4">
-              <CardBlog loading={loading} />
-              <CardBlog loading={loading} />
-              <CardBlog loading={loading} />
-            </div>
-          ) : (
-            blogs.map(blog => (
+        {loading ? (
+          <Slider style="special" settings={settings}>
+            <CardBlogSkeleton />
+            <CardBlogSkeleton />
+            <CardBlogSkeleton />
+          </Slider>
+        ) : (
+          <Slider style="special" settings={settings}>
+            {blogs.map(blog => (
               <CardBlog
                 key={blog.id}
                 imgUrl={blog.imgUrl}
@@ -50,9 +51,9 @@ const Blogs = () => {
                 field={blog.field}
                 createdAt={blog.createdAt}
               />
-            ))
-          )}
-        </Slider>
+            ))}
+          </Slider>
+        )}
       </Container>
     </section>
   );

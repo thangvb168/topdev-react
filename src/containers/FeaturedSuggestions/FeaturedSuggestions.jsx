@@ -3,6 +3,7 @@ import Container from '../Container';
 import Button from '@/components/Button';
 import CardJob from '@/components/CardJob';
 import request from '@/utils/request';
+import { CardJobSkeleton } from '@/components/Skeleton';
 
 const FeaturedSuggestions = () => {
   const [location, setLocation] = useState('All');
@@ -55,23 +56,27 @@ const FeaturedSuggestions = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {loading ? (
-            <div>Loading</div>
-          ) : (
-            jobs.map(job => (
-              <CardJob
-                key={job.id}
-                title={job.title}
-                description={job.description}
-                thumbnail={job.thumbnail}
-                type={job.type}
-                locationType={job.locationType}
-                salary={job.salary}
-                isBookmarked={job.isBookmarked}
-                fullWidth={true}
-              />
-            ))
-          )}
+          {loading
+            ? [1, 2, 3, 4].map(index => (
+                <CardJobSkeleton
+                  key={index}
+                  fullWidth={true}
+                  className="h-[400px]"
+                />
+              ))
+            : jobs.map(job => (
+                <CardJob
+                  key={job.id}
+                  title={job.title}
+                  description={job.description}
+                  thumbnail={job.thumbnail}
+                  type={job.type}
+                  locationType={job.locationType}
+                  salary={job.salary}
+                  isBookmarked={job.isBookmarked}
+                  fullWidth={true}
+                />
+              ))}
         </div>
       </Container>
     </section>
