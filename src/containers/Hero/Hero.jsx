@@ -132,6 +132,7 @@ const Hero = () => {
 
               return (
                 <Button
+                  key={typeElem}
                   variant={isActive ? 'filled' : 'outlined'}
                   color="primary"
                   onClick={() => {

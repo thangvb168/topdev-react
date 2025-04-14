@@ -68,7 +68,7 @@ const LoginForm = ({ action, onClose }) => {
 
   return (
     <div
-      className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg"
+      className="mx-6 w-full max-w-md rounded-lg bg-white p-8 shadow-lg"
       ref={formRef}
     >
       <div className="mb-8 text-center">

@@ -27,6 +27,7 @@ export const AuthProvider = ({ children }) => {
       // localStorage.setItem('access-token', user['access-token']);
       delete user['access-token'];
       delete user['password'];
+      user.area = 'UI/UX';
       setUser(user);
     } catch (error) {
       console.log('Login error:', error);
