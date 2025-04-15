@@ -45,13 +45,7 @@ const FeaturedCompanies = () => {
           </div>
           <div className="min-h-0 min-w-0">
             <h2 className="heading-2 mb-4">Công ty nổi bật</h2>
-            <Slider
-              settings={{
-                arrows: false,
-                variableWidth: true,
-                infinite: true,
-              }}
-            >
+            <Slider>
               <CompanyLogo
                 border
                 imgUrl="https://i.pinimg.com/736x/ab/56/f9/ab56f9d4bfaf6e2177592d3686477276.jpg"
@@ -92,7 +86,6 @@ const FeaturedCompanies = () => {
             <h2 className="heading-2 mb-4">Đề xuất cho bạn</h2>
             <Slider
               settings={{
-                arrows: false,
                 dots: true,
                 slidesToShow: 1,
                 variableWidth: false,

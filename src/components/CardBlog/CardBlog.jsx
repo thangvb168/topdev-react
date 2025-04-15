@@ -42,7 +42,7 @@ const CardBlog = props => {
       </div>
       <div className="p-4">
         <div className="me-[74px] mb-3">
-          <h2 className="display-2 mb-3">{title}</h2>
+          <h2 className="display-2 mb-3 line-clamp-1">{title}</h2>
           <p className="body-1 text-neutral-7 line-clamp-2">{content}</p>
         </div>
         <div className="flex justify-between">

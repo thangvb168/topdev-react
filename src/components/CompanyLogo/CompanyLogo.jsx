@@ -22,19 +22,15 @@ const CompanyLogo = props => {
   };
 
   return (
-    <div
+    <img
       className={clsx(
-        'mx-4 h-[60px] rounded-md text-center',
+        'h-[60px] w-full rounded-md object-cover text-center',
         borderClass,
         colorClasses[color] || colorClasses.default
       )}
-    >
-      <img
-        className="h-full w-full rounded-lg object-cover"
-        onError={handleImgError}
-        src={imgSrc}
-      />
-    </div>
+      onError={handleImgError}
+      src={imgSrc}
+    />
   );
 };
 

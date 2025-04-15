@@ -5,12 +5,6 @@ import request from '@/utils/request';
 import { CardJobSkeleton } from '@/components/Skeleton';
 
 const HotJobsToday = () => {
-  let settings = {
-    infinite: true,
-    centerMode: true,
-    centerPadding: '200px',
-  };
-
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -41,7 +35,19 @@ const HotJobsToday = () => {
           Công việc Hot Hôm Nay
         </h1>
         <div className="py-4">
-          <Slider settings={settings}>
+          <Slider
+            arrows={true}
+            variant="customArrows"
+            variableWidth={true}
+            infinite={true}
+            centerMode={true}
+            responsives={{
+              md: {
+                centerMode: true,
+                variableWidth: false,
+              },
+            }}
+          >
             {loading
               ? [1, 2, 3, 4, 5, 6].map(index => (
                   <CardJobSkeleton key={index} fullWidth={false} />

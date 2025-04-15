@@ -3,15 +3,11 @@ import Container from '../Container';
 import CardBlog from '@/components/CardBlog';
 import Slider from '@/components/Slider';
 import request from '@/utils/request';
-import { CardBlogSkeleton } from '@/components/Skeleton';
+import { CardBlogSkeleton, CardJobSkeleton } from '@/components/Skeleton';
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const settings = {
-    centerPadding: '10px',
-  };
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -35,13 +31,17 @@ const Blogs = () => {
         <h1 className="heading-1 mb-8">Blog</h1>
 
         {loading ? (
-          <Slider style="special" settings={settings}>
-            <CardBlogSkeleton />
-            <CardBlogSkeleton />
-            <CardBlogSkeleton />
+          <Slider>
+            <CardJobSkeleton />
+            <CardJobSkeleton />
+            <CardJobSkeleton />
           </Slider>
         ) : (
-          <Slider style="special" settings={settings}>
+          <Slider
+            slidesToShow={3}
+            variant="customDotsWithArrow"
+            variableWidth={false}
+          >
             {blogs.map(blog => (
               <CardBlog
                 key={blog.id}
