@@ -14,6 +14,8 @@ const BREAKPOINT_MAP = {
 };
 
 const Slider = props => {
+  const sliderRef = useRef(null);
+
   let {
     children,
     className = '',
@@ -27,12 +29,11 @@ const Slider = props => {
     centerMode = false,
     infinite = true,
     speed = 500,
-    responsives = {},
+    responsives = [],
     settings = {},
   } = props;
 
-  const sliderRef = useRef();
-
+  console.log(responsives);
   if (!children || React.Children.count(children) === 0) {
     return null;
   }
@@ -48,7 +49,7 @@ const Slider = props => {
     })
   );
 
-  let settingSlider = {
+  let settingConfig = {
     slidesToShow,
     slidesToScroll: slidesToScroll || slidesToShow,
     arrows,
@@ -82,16 +83,16 @@ const Slider = props => {
     },
   };
 
-  settingSlider = {
-    ...settingSlider,
+  const settingsUpdate = {
+    ...settingConfig,
     ...(variantSettings[variant] || {}),
   };
 
   return (
     <div className={clsx('min-h-0 min-w-0', className)}>
-      <ReactSlick ref={sliderRef} {...settingSlider}>
+      <ReactSlick ref={sliderRef} {...settingsUpdate}>
         {children.map((elem, index) => (
-          <div className="px-4 outline-none">{elem}</div>
+          <div className={clsx('px-4 outline-none')}>{elem}</div>
         ))}
       </ReactSlick>
     </div>

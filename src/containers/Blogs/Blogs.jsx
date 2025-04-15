@@ -30,21 +30,22 @@ const Blogs = () => {
       <Container>
         <h1 className="heading-1 mb-8">Blog</h1>
 
-        {loading ? (
-          <Slider>
-            <CardJobSkeleton />
-            <CardJobSkeleton />
-            <CardJobSkeleton />
-          </Slider>
-        ) : (
-          <>
-            <Slider
-              className="hidden md:block"
-              slidesToShow={3}
-              variant="customDotsWithArrow"
-              variableWidth={false}
-            >
-              {blogs.map(blog => (
+        <Slider
+          variant="customDotsWithArrow"
+          slidesToShow={3}
+          slidesToScroll={3}
+          variableWidth={false}
+          responsives={{
+            md: {
+              slidesToScroll: 1,
+              variableWidth: false,
+              slidesToShow: 1,
+            },
+          }}
+        >
+          {loading
+            ? [1, 2, 3, 4, 5, 6].map(index => <CardBlogSkeleton key={index} />)
+            : blogs.map(blog => (
                 <CardBlog
                   key={blog.id}
                   imgUrl={blog.imgUrl}
@@ -54,26 +55,7 @@ const Blogs = () => {
                   createdAt={blog.createdAt}
                 />
               ))}
-            </Slider>
-            <Slider
-              className="block md:hidden"
-              slidesToShow={1}
-              variant="customDotsWithArrow"
-              variableWidth={false}
-            >
-              {blogs.map(blog => (
-                <CardBlog
-                  key={blog.id}
-                  imgUrl={blog.imgUrl}
-                  title={blog.title}
-                  description={blog.description}
-                  field={blog.field}
-                  createdAt={blog.createdAt}
-                />
-              ))}
-            </Slider>
-          </>
-        )}
+        </Slider>
       </Container>
     </section>
   );

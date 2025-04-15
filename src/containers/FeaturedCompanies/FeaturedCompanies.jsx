@@ -20,8 +20,8 @@ const FeaturedCompanies = () => {
   return (
     <section id="featured-companies-container" className="mb-16">
       <Container>
-        <div className="grid grid-cols-1 gap-x-16 gap-y-8 md:grid-cols-[3fr_12fr_5fr]">
-          <div className="">
+        <div className="grid grid-cols-1 gap-y-8 sm:grid-cols-4 sm:gap-x-1 md:grid-cols-[3fr_12fr_5fr] md:gap-x-16">
+          <div className="sm:col-span-1 md:col-auto">
             <h2 className="heading-2 mb-4">Danh mục</h2>
             <div className="flex flex-col gap-2">
               <div className="grid grid-cols-2 gap-2 md:grid-cols-1">
@@ -43,7 +43,7 @@ const FeaturedCompanies = () => {
               </Button>
             </div>
           </div>
-          <div className="min-h-0 min-w-0">
+          <div className="min-h-0 min-w-0 sm:col-span-2 md:col-auto">
             <h2 className="heading-2 mb-4">Công ty nổi bật</h2>
             <Slider>
               <CompanyLogo
@@ -64,7 +64,7 @@ const FeaturedCompanies = () => {
               />
               <CompanyLogo border />
             </Slider>
-            <div className="flex flex-col gap-4 p-2 md:flex-row">
+            <div className="flex flex-col gap-4 p-2 lg:flex-row">
               <img
                 src="https://i.pinimg.com/736x/db/a2/4f/dba24f703c99ab334da01191cb0636e3.jpg"
                 alt="Thumbnail"
@@ -82,7 +82,7 @@ const FeaturedCompanies = () => {
               </div>
             </div>
           </div>
-          <div className="min-w-0">
+          <div className="min-w-0 sm:col-span-1 md:col-auto">
             <h2 className="heading-2 mb-4">Đề xuất cho bạn</h2>
             <Slider
               settings={{

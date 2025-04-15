@@ -50,7 +50,7 @@ const CardJob = props => {
   return (
     <div
       onClick={handleClick}
-      className={`rounded-lg bg-white p-4 shadow-lg transition-all duration-200 ease-in-out hover:-translate-y-1 hover:scale-105 ${cardClass} ${className}`}
+      className={`mx-auto rounded-lg bg-white p-4 shadow-lg transition-all duration-200 ease-in-out hover:-translate-y-1 hover:scale-105 ${cardClass} ${className}`}
     >
       <div className="flex items-center gap-4">
         <div className="size-12 overflow-hidden">

@@ -42,9 +42,11 @@ const HotJobsToday = () => {
             infinite={true}
             centerMode={true}
             responsives={{
-              md: {
-                centerMode: true,
+              sm: {
                 variableWidth: false,
+                slidesToShow: 1,
+                centerMode: true,
+                centerPadding: '0px',
               },
             }}
           >
@@ -62,6 +64,7 @@ const HotJobsToday = () => {
                     locationType={job.locationType}
                     salary={job.salary}
                     isBookmarked={job.isBookmarked}
+                    fullWidth={false}
                   />
                 ))}
           </Slider>
