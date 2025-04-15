@@ -1,10 +1,10 @@
 const Option = ({ value, children, onSelect }) => {
   return (
     <div
-      className="cursor-pointer px-2 py-1 hover:bg-gray-100"
+      className="hover:bg-neutral-3 cursor-pointer rounded-md px-2 py-1 text-black hover:text-white"
       onClick={() => onSelect(value)}
     >
-      <span className="text-nowrap">{children}</span>
+      <span className="font-semibold text-nowrap">{children}</span>
     </div>
   );
 };

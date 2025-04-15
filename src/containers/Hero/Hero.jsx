@@ -9,6 +9,7 @@ import request from '@/utils/request';
 import CardJob from '@/components/CardJob';
 import useDebounce from '@/hooks/useDebounce';
 import { CardJobSkeleton } from '@/components/Skeleton';
+import clsx from 'clsx';
 
 const Hero = () => {
   const [location, setLocation] = useState('');
@@ -41,23 +42,23 @@ const Hero = () => {
   const fetchJobs = async () => {
     setLoading(true);
     try {
-      let data = await request.get('/jobs');
-      if (location !== '' && location !== 'Tất cả') {
-        data = data.filter(job => job.location.name === location);
-      }
-
-      if (type !== '') {
-        data = data.filter(job => job.type === type);
-      }
-
       if (searchValue !== '') {
+        let data = await request.get('/jobs');
+        if (location !== '' && location !== 'Tất cả') {
+          data = data.filter(job => job.location.name === location);
+        }
+
+        if (type !== '') {
+          data = data.filter(job => job.type === type);
+        }
+
         data = data.filter(job =>
           job.title.toLowerCase().includes(searchValue.toLowerCase())
         );
-      }
 
-      console.log('Length:', data.length);
-      setJobs(data);
+        console.log('Length:', data.length);
+        setJobs(data);
+      }
     } catch (error) {
       console.error('Error fetching jobs:', error);
     } finally {
@@ -97,7 +98,7 @@ const Hero = () => {
                 <Input
                   size="extra"
                   placeholder="Công việc bạn đang tìm ?"
-                  suffix={<FontAwesomeIcon size="xl" icon={faSearch} />}
+                  suffix={<FontAwesomeIcon size="md" icon={faSearch} />}
                   onChange={handleChangeValue}
                   value={searchValue}
                 />
@@ -140,7 +141,12 @@ const Hero = () => {
                   }}
                   className="w-1/3 md:w-auto"
                 >
-                  <span className="small-headline text-nowrap text-black">
+                  <span
+                    className={clsx(
+                      'small-headline text-nowrap',
+                      isActive ? 'text-white' : 'text-black'
+                    )}
+                  >
                     {typeElem}
                   </span>
                 </Button>

@@ -30,10 +30,10 @@ const Input = props => {
   } = props;
 
   const sizeClasses = {
-    small: 'h-6 text-sm',
-    default: 'h-8 text-base py-1',
-    large: 'h-10 text-lg',
-    extra: 'h-12 text-xl',
+    small: 'h-4 text-sm',
+    default: 'h-6 text-base py-1',
+    large: 'h-8 text-lg',
+    extra: 'h-10 text-xl',
     auto: 'h-auto text-base',
     full: 'h-full text-base',
   };

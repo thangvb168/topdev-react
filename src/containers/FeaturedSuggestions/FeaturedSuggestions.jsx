@@ -8,6 +8,7 @@ import clsx from 'clsx';
 
 const FeaturedSuggestions = () => {
   const [location, setLocation] = useState('All');
+  const [allJobs, setAllJobs] = useState([]);
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -16,14 +17,7 @@ const FeaturedSuggestions = () => {
       setLoading(true);
       try {
         const data = await request.get('/jobs');
-        if (location !== 'All') {
-          const filteredJobs = data.filter(
-            job => job.location.name === location
-          );
-          setJobs(filteredJobs);
-          return;
-        }
-        setJobs(data);
+        setAllJobs(data);
       } catch (error) {
         console.error('Error fetching jobs:', error);
       } finally {
@@ -31,7 +25,24 @@ const FeaturedSuggestions = () => {
       }
     };
 
-    fetchJobs();
+    const filterJobs = jobs => {
+      if (jobs.length === 0) return [];
+      if (location === 'All') return jobs;
+      return jobs.filter(job => job.location.name === location);
+    };
+
+    if (location === 'All') {
+      if (allJobs.length > 0) {
+        setJobs(allJobs);
+        return;
+      } else {
+        fetchJobs();
+        setJobs(allJobs);
+      }
+    } else {
+      const filteredJobs = filterJobs(allJobs);
+      setJobs(filteredJobs);
+    }
   }, [location]);
 
   const locations = ['All', 'Hà Nội', 'Hồ Chí Minh', 'Đà Nẵng'];
@@ -48,11 +59,11 @@ const FeaturedSuggestions = () => {
               <Button
                 key={loc}
                 color={location === loc ? 'primary' : 'neutral'}
-                isLoading={loading && location === loc}
                 onClick={() => setLocation(loc)}
               >
                 <span
                   className={clsx(
+                    'font-semibold',
                     location === loc ? 'text-white' : 'text-black'
                   )}
                 >

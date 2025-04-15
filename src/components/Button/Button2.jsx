@@ -52,7 +52,7 @@ const Button2 = props => {
     primary: { '--btn-color': 'var(--color-primary)' },
     success: { '--btn-color': 'var(--color-success-1)' },
     white: { '--btn-color': 'var(--color-white)' },
-    neutral: { '--btn-color': 'var(--color-neutral-1)' },
+    neutral: { '--btn-color': 'var(--color-neutral-2)' },
   };
 
   let variantClasses = {
