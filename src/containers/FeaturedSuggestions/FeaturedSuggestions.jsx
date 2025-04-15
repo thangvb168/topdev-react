@@ -18,6 +18,7 @@ const FeaturedSuggestions = () => {
       try {
         const data = await request.get('/jobs');
         setAllJobs(data);
+        setJobs(data);
       } catch (error) {
         console.error('Error fetching jobs:', error);
       } finally {
@@ -25,25 +26,19 @@ const FeaturedSuggestions = () => {
       }
     };
 
-    const filterJobs = jobs => {
-      if (jobs.length === 0) return [];
-      if (location === 'All') return jobs;
-      return jobs.filter(job => job.location.name === location);
-    };
+    fetchJobs();
+  }, []);
 
+  useEffect(() => {
     if (location === 'All') {
-      if (allJobs.length > 0) {
-        setJobs(allJobs);
-        return;
-      } else {
-        fetchJobs();
-        setJobs(allJobs);
-      }
+      setJobs(allJobs);
     } else {
-      const filteredJobs = filterJobs(allJobs);
+      const filteredJobs = allJobs.filter(
+        job => job.location.name === location
+      );
       setJobs(filteredJobs);
     }
-  }, [location]);
+  }, [location, allJobs]);
 
   const locations = ['All', 'Hà Nội', 'Hồ Chí Minh', 'Đà Nẵng'];
 
