@@ -138,6 +138,7 @@ const Hero = () => {
                   onClick={() => {
                     setType(isActive ? '' : typeElem);
                   }}
+                  className="w-1/3 md:w-auto"
                 >
                   <span className="small-headline text-nowrap text-black">
                     {typeElem}

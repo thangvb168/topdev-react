@@ -14,7 +14,9 @@ const TopEmployers = () => {
   return (
     <section id="top-employers-container" className="mb-16">
       <Container>
-        <h1 className="heading-1 mb-8">Nhà tuyển dụng hàng đầu</h1>
+        <h1 className="heading-1 mb-8 bg-gradient-to-r from-[#eb2702] from-[3%] via-[#ff7d25] via-75% to-[#FF9D5A] bg-clip-text text-transparent">
+          Nhà tuyển dụng hàng đầu
+        </h1>
       </Container>
       <div>
         <Slider settings={settings}>

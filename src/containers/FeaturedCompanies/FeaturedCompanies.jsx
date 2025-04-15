@@ -6,6 +6,17 @@ import CompanyLogo from '@/components/CompanyLogo';
 import CardJob from '@/components/CardJob';
 
 const FeaturedCompanies = () => {
+  const menuItems = [
+    'Việc làm IT',
+    'Tạo CV',
+    'Công ty IT',
+    'Trắc nghiệm tính cách',
+    'Blog',
+    <>
+      Việc làm IT <span className="text-primary">Fresher</span>
+    </>,
+  ];
+
   return (
     <section id="featured-companies-container" className="mb-16">
       <Container>
@@ -13,62 +24,22 @@ const FeaturedCompanies = () => {
           <div className="">
             <h2 className="heading-2 mb-4">Danh mục</h2>
             <div className="flex flex-col gap-2">
-              <Button
-                color="neutral"
-                block
-                align="left"
-                className="small-headline"
-              >
-                Việc làm IT
-              </Button>
-              <Button
-                color="neutral"
-                block
-                align="left"
-                className="small-headline"
-              >
-                Tạo CV
-              </Button>
-              <Button
-                color="neutral"
-                block
-                align="left"
-                className="small-headline"
-              >
-                Công ty IT
-              </Button>
-              <Button
-                color="neutral"
-                block
-                align="left"
-                className="small-headline"
-              >
-                Trắc nghiệm tính cách
-              </Button>
-              <Button
-                color="neutral"
-                block
-                align="left"
-                className="small-headline"
-              >
-                Blog
-              </Button>
+              <div className="grid grid-cols-2 gap-2 md:grid-cols-1">
+                {menuItems.map((item, idx) => (
+                  <Button
+                    key={idx}
+                    color="neutral"
+                    block
+                    align="left"
+                    className="small-headline"
+                  >
+                    <span className="line-clamp-1 text-nowrap">{item}</span>
+                  </Button>
+                ))}
+              </div>
 
-              <Button
-                color="neutral"
-                block
-                align="left"
-                className="small-headline"
-              >
-                Việc làm IT <span className="text-primary">Fresher</span>
-              </Button>
-              <Button
-                variant="link"
-                block
-                align="left"
-                className="small-headline"
-              >
-                Xem thêm
+              <Button variant="link" block className="small-headline">
+                <div className="w-full text-center md:text-left">Xem thêm</div>
               </Button>
             </div>
           </div>
@@ -103,7 +74,7 @@ const FeaturedCompanies = () => {
               <img
                 src="https://i.pinimg.com/736x/db/a2/4f/dba24f703c99ab334da01191cb0636e3.jpg"
                 alt="Thumbnail"
-                className="w-3/4 object-cover md:h-[230px] md:max-w-[410px]"
+                className="w-max-full rounded-lg object-cover md:h-[230px] md:max-w-[410px]"
               />
               <div className="flex flex-col justify-between">
                 <div className="flex flex-col gap-2">

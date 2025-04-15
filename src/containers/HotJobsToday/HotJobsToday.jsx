@@ -31,9 +31,15 @@ const HotJobsToday = () => {
   }, []);
 
   return (
-    <section id="hot-jobs-today-container" className="bg-primary-0 mb-16 py-12">
+    // #EB2702_3%,#FF7D25_75%,#FF9D5A_100%
+    <section
+      id="hot-jobs-today-container"
+      className="mb-16 bg-gradient-to-r from-[#eb2702]/10 from-[3%] via-[#ff7d25]/10 via-75% to-[#FF9D5A]/10 py-12"
+    >
       <div className="text-center">
-        <h1 className="heading-1 mb-4">Công việc Hot Hôm Nay</h1>
+        <h1 className="heading-1 mb-4 bg-gradient-to-r from-[#eb2702] from-[3%] via-[#ff7d25] via-75% to-[#FF9D5A] bg-clip-text text-transparent">
+          Công việc Hot Hôm Nay
+        </h1>
         <div className="py-4">
           <Slider settings={settings}>
             {loading
