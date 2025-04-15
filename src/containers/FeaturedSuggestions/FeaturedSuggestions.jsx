@@ -4,6 +4,7 @@ import Button from '@/components/Button';
 import CardJob from '@/components/CardJob';
 import request from '@/utils/request';
 import { CardJobSkeleton } from '@/components/Skeleton';
+import clsx from 'clsx';
 
 const FeaturedSuggestions = () => {
   const [location, setLocation] = useState('All');
@@ -50,7 +51,13 @@ const FeaturedSuggestions = () => {
                 isLoading={loading && location === loc}
                 onClick={() => setLocation(loc)}
               >
-                {loc}
+                <span
+                  className={clsx(
+                    location === loc ? 'text-white' : 'text-black'
+                  )}
+                >
+                  {loc}
+                </span>
               </Button>
             ))}
           </div>

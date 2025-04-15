@@ -37,22 +37,42 @@ const Blogs = () => {
             <CardJobSkeleton />
           </Slider>
         ) : (
-          <Slider
-            slidesToShow={3}
-            variant="customDotsWithArrow"
-            variableWidth={false}
-          >
-            {blogs.map(blog => (
-              <CardBlog
-                key={blog.id}
-                imgUrl={blog.imgUrl}
-                title={blog.title}
-                description={blog.description}
-                field={blog.field}
-                createdAt={blog.createdAt}
-              />
-            ))}
-          </Slider>
+          <>
+            <Slider
+              className="hidden md:block"
+              slidesToShow={3}
+              variant="customDotsWithArrow"
+              variableWidth={false}
+            >
+              {blogs.map(blog => (
+                <CardBlog
+                  key={blog.id}
+                  imgUrl={blog.imgUrl}
+                  title={blog.title}
+                  description={blog.description}
+                  field={blog.field}
+                  createdAt={blog.createdAt}
+                />
+              ))}
+            </Slider>
+            <Slider
+              className="block md:hidden"
+              slidesToShow={1}
+              variant="customDotsWithArrow"
+              variableWidth={false}
+            >
+              {blogs.map(blog => (
+                <CardBlog
+                  key={blog.id}
+                  imgUrl={blog.imgUrl}
+                  title={blog.title}
+                  description={blog.description}
+                  field={blog.field}
+                  createdAt={blog.createdAt}
+                />
+              ))}
+            </Slider>
+          </>
         )}
       </Container>
     </section>

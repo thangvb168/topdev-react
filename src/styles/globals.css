@@ -167,25 +167,3 @@ body {
   @apply text-[10px] leading-[1.35] font-medium;
 }
 /* End Typograpy */
-
-/* Custom Slider */
-
-/* .slick-arrow::before {
-  font-size: 48px;
-} */
-
-.slick-arrow.slick-prev {
-  left: 3rem;
-}
-
-.slick-arrow.slick-next {
-  right: 3rem;
-}
-
-/* .slick-slide > div {
-  margin: 0 10px;
-}
-.slick-list {
-  margin: 0 -10px;
-} */
-/* End Custom Slider */

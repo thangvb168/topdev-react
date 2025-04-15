@@ -3,11 +3,11 @@ import React from 'react';
 const Spinner = ({ size = 'sm', color = 'blue-600' }) => {
   const sizeClasses = {
     xs: 'h-2 w-2',
-    sm: 'h-4 w-4',
-    md: 'h-6 w-6',
-    lg: 'h-8 w-8',
-    xl: 'h-10 w-10',
-    '2xl': 'h-12 w-12',
+    sm: 'h-3 w-3',
+    md: 'h-4 w-4',
+    lg: 'h-5 w-5',
+    xl: 'h-6 w-6',
+    '2xl': 'h-7 w-7',
   };
   if (!Object.keys(sizeClasses).includes(size)) size = 'sm';
   let sizeClass = sizeClasses[size];
