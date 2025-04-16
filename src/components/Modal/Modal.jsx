@@ -50,7 +50,7 @@ const Modal = props => {
     >
       <div
         ref={modalRef}
-        className="w-full rounded-lg bg-white p-4 px-4 md:w-1/3"
+        className="mx-4 w-full rounded-lg bg-white p-4 px-4 sm:w-1/2 md:w-1/3"
       >
         <div className="-mr-2 flex items-center">
           <div className="flex-1 grow text-left text-lg font-semibold text-black">

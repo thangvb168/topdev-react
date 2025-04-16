@@ -1,11 +1,15 @@
 import request from '@/utils/request';
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { useToast } from './ToastContext';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+
+  const { toast } = useToast();
+
   useEffect(() => {
     const storedToken = localStorage.getItem('access-token');
     if (storedToken) {
@@ -32,6 +36,7 @@ export const AuthProvider = ({ children }) => {
       if (user.password !== password) {
         throw new Error('Incorrect password');
       }
+
       setToken(user['access-token']);
       localStorage.setItem('access-token', user['access-token']);
       delete user['access-token'];
@@ -39,8 +44,14 @@ export const AuthProvider = ({ children }) => {
       user.area = 'UI/UX';
       setUser(user);
       localStorage.setItem('user', JSON.stringify(user));
+      toast.success({
+        msg: 'Đăng nhập thành công',
+      });
     } catch (error) {
       console.log('Login error:', error);
+      toast.error({
+        msg: 'Đăng nhập thất bại',
+      });
       throw error;
     }
   };
@@ -49,6 +60,10 @@ export const AuthProvider = ({ children }) => {
     setToken('');
     setUser(null);
     localStorage.removeItem('access-token');
+    localStorage.removeItem('user');
+    toast.success({
+      msg: 'Đăng xuất thành công',
+    });
   };
 
   return (

@@ -6,8 +6,11 @@ const LoginForm = ({ action, onClose }) => {
   const formRef = useRef(null);
 
   const loginSchema = z.object({
-    email: z.string().email('Invalid email address'),
-    password: z.string().min(6, 'Password must be at least 6 characters'),
+    email: z.string().email('Email không hợp lệ').nonempty('Email là bắt buộc'),
+    password: z
+      .string()
+      .min(6, 'Mật khẩu phải có ít nhất 6 ký tự')
+      .nonempty('Mật khẩu là bắt buộc'),
   });
 
   const [formData, setFormData] = useState({
@@ -59,10 +62,10 @@ const LoginForm = ({ action, onClose }) => {
       }
 
       if (error.message === 'User not found') {
-        setErrors(prev => ({ ...prev, email: 'User not found' }));
+        setErrors(prev => ({ ...prev, email: 'Tài khoản không tồn tại' }));
       }
       if (error.message === 'Incorrect password') {
-        setErrors(prev => ({ ...prev, password: 'Incorrect password' }));
+        setErrors(prev => ({ ...prev, password: 'Sai mật khẩu' }));
       }
     }
   };
@@ -74,9 +77,11 @@ const LoginForm = ({ action, onClose }) => {
     >
       <div className="mb-8 text-center">
         <h1 className="bg-gradient-to-r from-[#eb2702] from-[3%] via-[#ff7d25] via-75% to-[#FF9D5A] bg-clip-text text-4xl font-bold text-transparent">
-          Login
+          Đăng nhập
         </h1>
-        <p className="mt-2 text-gray-500">Please sign in to your account</p>
+        <p className="mt-2 text-gray-500">
+          Vui lòng đăng nhập vào tài khoản của bạn
+        </p>
       </div>
 
       <form onSubmit={handleSubmit}>
@@ -85,7 +90,7 @@ const LoginForm = ({ action, onClose }) => {
             htmlFor="email"
             className="mb-1 block text-sm font-medium text-gray-700"
           >
-            Email Address
+            Địa chỉ Email
           </label>
           <input
             type="email"
@@ -94,7 +99,7 @@ const LoginForm = ({ action, onClose }) => {
             value={formData.email}
             onChange={handleChange}
             className="focus:ring-primary w-full rounded-md px-4 py-2 focus:ring-2 focus:outline-none"
-            placeholder="your@email.com"
+            placeholder="john@email.com"
           />
           {errors.email && (
             <p className="mt-1 text-sm text-red-600">{errors.email}</p>
@@ -107,13 +112,13 @@ const LoginForm = ({ action, onClose }) => {
               htmlFor="password"
               className="block text-sm font-medium text-gray-700"
             >
-              Password
+              Mật khẩu
             </label>
             <a
               href="#"
               className="text-primary-lc-1 hover:text-primary text-sm"
             >
-              Forgot password?
+              Quên mật khẩu?
             </a>
           </div>
           <input
@@ -132,14 +137,14 @@ const LoginForm = ({ action, onClose }) => {
 
         <div className="mb-6">
           <Button block type="submit" color="primary">
-            <span className="font-semibold text-white">Sign In</span>
+            <span className="font-semibold text-white">Đăng nhập</span>
           </Button>
         </div>
 
         <div className="text-center text-sm text-gray-600">
-          Don't have an account?{' '}
-          <a href="#" className="text-primary-lc-2 hover:text-primary">
-            Sign up
+          Bạn chưa có tài khoản?
+          <a href="#" className="text-primary-lc-2 hover:text-primary ml-1">
+            Đăng ký
           </a>
         </div>
       </form>

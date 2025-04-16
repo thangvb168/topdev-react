@@ -1,4 +1,5 @@
 import { AuthProvider } from '@/contexts/AuthContext';
+import { ToastProvider } from '@/contexts/ToastContext';
 import '@/styles/globals.css';
 
 import { config } from '@fortawesome/fontawesome-svg-core';
@@ -7,8 +8,10 @@ config.autoAddCss = false;
 
 export default function App({ Component, pageProps }) {
   return (
-    <AuthProvider>
-      <Component {...pageProps} />;
-    </AuthProvider>
+    <ToastProvider>
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
+    </ToastProvider>
   );
 }
