@@ -3,7 +3,7 @@ import Container from '../Container';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faLocation, faSearch } from '@fortawesome/free-solid-svg-icons';
 import Select from '@/components/Select';
 import request from '@/utils/request';
 import CardJob from '@/components/CardJob';
@@ -108,6 +108,7 @@ const Hero = () => {
                   value={location}
                   onChange={handleChangeOption}
                   placeholder="Vị trí"
+                  icon={<FontAwesomeIcon size="lg" icon={faLocation} />}
                 >
                   {locations.map(loc => (
                     <Select.Option key={loc.value} value={loc.value}>

@@ -1,19 +1,29 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  Children,
+  cloneElement,
+  isValidElement,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import Option from './Option';
 import Group from './Group';
 import Button from '../Button';
+import clsx from 'clsx';
 
-const Select = ({ value, placeholder, onChange, children }) => {
+const Select = props => {
+  const { value, placeholder, icon = null, onChange, children } = props;
+
   const [open, setOpen] = useState(false);
-  const optRef = useRef(null);
-
-  const handleClickOutside = e => {
-    if (optRef.current && !optRef.current.contains(e.target)) {
-      setOpen(false);
-    }
-  };
+  const wrapperRef = useRef(null);
 
   useEffect(() => {
+    const handleClickOutside = e => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -25,25 +35,25 @@ const Select = ({ value, placeholder, onChange, children }) => {
     setOpen(false);
   };
 
-  const childrenElem = React.Children.map(children, child => {
-    if (!React.isValidElement(child)) return child;
-
-    return React.cloneElement(child, { onSelect: handleSelect });
-  });
+  const childrenElem = Children.map(children, child =>
+    isValidElement(child)
+      ? cloneElement(child, { onSelect: handleSelect })
+      : child
+  );
 
   return (
-    <div className="relative inline-block w-full">
+    <div ref={wrapperRef} className="relative inline-block w-full">
+      {icon && (
+        <div className="absolute top-1/2 left-2 -translate-y-1/2">{icon}</div>
+      )}
       <Button size="md" color="neutral" block onClick={() => setOpen(!open)}>
-        <span className="line-clamp-1 font-semibold">
+        <span className={clsx('line-clamp-1 font-semibold', icon && 'pl-3')}>
           {value || placeholder}
         </span>
       </Button>
 
       {open && (
-        <div
-          ref={optRef}
-          className="bg-neutral-2 absolute z-10 mt-1 w-full rounded p-2 shadow"
-        >
+        <div className="bg-neutral-2 absolute z-10 mt-1 w-auto min-w-full rounded p-2 shadow">
           {childrenElem}
         </div>
       )}
