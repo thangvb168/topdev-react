@@ -14,8 +14,8 @@ const LoginForm = ({ action, onClose }) => {
   });
 
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: 'testuser@gmail.com',
+    password: '12345678',
   });
 
   const [errors, setErrors] = useState({
