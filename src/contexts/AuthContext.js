@@ -1,12 +1,21 @@
 import request from '@/utils/request';
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState();
-  // localStorage.getItem('access-token') || ''
+  const [token, setToken] = useState(null);
+  useEffect(() => {
+    const storedToken = localStorage.getItem('access-token');
+    if (storedToken) {
+      setToken(storedToken);
+    }
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   const login = async data => {
     try {
@@ -24,11 +33,12 @@ export const AuthProvider = ({ children }) => {
         throw new Error('Incorrect password');
       }
       setToken(user['access-token']);
-      // localStorage.setItem('access-token', user['access-token']);
+      localStorage.setItem('access-token', user['access-token']);
       delete user['access-token'];
       delete user['password'];
       user.area = 'UI/UX';
       setUser(user);
+      localStorage.setItem('user', JSON.stringify(user));
     } catch (error) {
       console.log('Login error:', error);
       throw error;

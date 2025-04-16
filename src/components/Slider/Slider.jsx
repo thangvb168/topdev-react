@@ -33,7 +33,6 @@ const Slider = props => {
     settings = {},
   } = props;
 
-  console.log(responsives);
   if (!children || React.Children.count(children) === 0) {
     return null;
   }

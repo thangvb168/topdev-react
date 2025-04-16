@@ -1,3 +1,4 @@
+import Button from '@/components/Button';
 import React, { useEffect, useRef, useState } from 'react';
 import { z } from 'zod';
 
@@ -72,7 +73,9 @@ const LoginForm = ({ action, onClose }) => {
       ref={formRef}
     >
       <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-gray-800">Login</h1>
+        <h1 className="bg-gradient-to-r from-[#eb2702] from-[3%] via-[#ff7d25] via-75% to-[#FF9D5A] bg-clip-text text-4xl font-bold text-transparent">
+          Login
+        </h1>
         <p className="mt-2 text-gray-500">Please sign in to your account</p>
       </div>
 
@@ -90,7 +93,7 @@ const LoginForm = ({ action, onClose }) => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full rounded-md border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="focus:ring-primary w-full rounded-md px-4 py-2 focus:ring-2 focus:outline-none"
             placeholder="your@email.com"
           />
           {errors.email && (
@@ -106,7 +109,10 @@ const LoginForm = ({ action, onClose }) => {
             >
               Password
             </label>
-            <a href="#" className="text-sm text-blue-600 hover:text-blue-800">
+            <a
+              href="#"
+              className="text-primary-lc-1 hover:text-primary text-sm"
+            >
               Forgot password?
             </a>
           </div>
@@ -116,7 +122,7 @@ const LoginForm = ({ action, onClose }) => {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            className="w-full rounded-md border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="focus:ring-primary w-full rounded-md px-4 py-2 focus:ring-2 focus:outline-none"
             placeholder="••••••••"
           />
           {errors.password && (
@@ -125,17 +131,14 @@ const LoginForm = ({ action, onClose }) => {
         </div>
 
         <div className="mb-6">
-          <button
-            type="submit"
-            className="w-full rounded-md bg-blue-600 px-4 py-2 text-white transition-colors duration-300 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
-          >
-            Sign In
-          </button>
+          <Button block type="submit" color="primary">
+            <span className="font-semibold text-white">Sign In</span>
+          </Button>
         </div>
 
         <div className="text-center text-sm text-gray-600">
           Don't have an account?{' '}
-          <a href="#" className="text-blue-600 hover:text-blue-800">
+          <a href="#" className="text-primary-lc-2 hover:text-primary">
             Sign up
           </a>
         </div>

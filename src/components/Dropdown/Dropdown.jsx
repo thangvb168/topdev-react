@@ -58,6 +58,7 @@ const Dropdown = props => {
         <div
           key={item.key || index}
           className="hover:bg-neutral-4 cursor-pointer rounded-md p-2 transition-colors duration-200"
+          onClick={item.onClick}
         >
           {item.label}
         </div>

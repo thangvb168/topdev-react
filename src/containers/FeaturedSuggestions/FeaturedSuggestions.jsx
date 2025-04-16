@@ -8,7 +8,6 @@ import clsx from 'clsx';
 
 const FeaturedSuggestions = () => {
   const [location, setLocation] = useState('All');
-  const [allJobs, setAllJobs] = useState([]);
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -16,8 +15,10 @@ const FeaturedSuggestions = () => {
     const fetchJobs = async () => {
       setLoading(true);
       try {
-        const data = await request.get('/jobs');
-        setAllJobs(data);
+        let data = await request.get('/jobs');
+        if (location !== 'All') {
+          data = data.filter(job => job.location.name === location);
+        }
         setJobs(data);
       } catch (error) {
         console.error('Error fetching jobs:', error);
@@ -27,18 +28,7 @@ const FeaturedSuggestions = () => {
     };
 
     fetchJobs();
-  }, []);
-
-  useEffect(() => {
-    if (location === 'All') {
-      setJobs(allJobs);
-    } else {
-      const filteredJobs = allJobs.filter(
-        job => job.location.name === location
-      );
-      setJobs(filteredJobs);
-    }
-  }, [location, allJobs]);
+  }, [location]);
 
   const locations = ['All', 'Hà Nội', 'Hồ Chí Minh', 'Đà Nẵng'];
 
@@ -71,11 +61,7 @@ const FeaturedSuggestions = () => {
         <div className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {loading
             ? [1, 2, 3, 4].map(index => (
-                <CardJobSkeleton
-                  key={index}
-                  fullWidth={true}
-                  className="h-[400px]"
-                />
+                <CardJobSkeleton key={index} fullWidth={true} />
               ))
             : jobs.map(job => (
                 <CardJob
